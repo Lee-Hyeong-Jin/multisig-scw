@@ -3,7 +3,7 @@ pragma solidity ^0.8.12;
 
 import {IEntryPoint} from "account-abstraction/interfaces/IEntryPoint.sol";
 import {BaseAccount} from "account-abstraction/core/BaseAccount.sol";
-import {UserOperation} from "account-abstraction/interfaces/UserOperation.sol";
+import {PackedUserOperation} from "account-abstraction/interfaces/PackedUserOperation.sol";
 import {ECDSA} from "@openzeppelin/contracts/utils/cryptography/ECDSA.sol";
 import {Initializable} from "@openzeppelin/contracts/proxy/utils/Initializable.sol";
 import {UUPSUpgradeable} from "@openzeppelin/contracts/proxy/utils/UUPSUpgradeable.sol";
@@ -40,7 +40,7 @@ contract Wallet is
     return _entryPoint;
   }
 
-  function _validateSignature(UserOperation calldata userOp, bytes32 userOpHash) internal view override returns(uint256) {
+  function _validateSignature(PackedUserOperation calldata userOp, bytes32 userOpHash) internal view override returns(uint256) {
     bytes32 hash = userOpHash.toEthSignedMessageHash();
 
     bytes[] memory signatures = abi.decode(userOp.signature, (bytes[]));
