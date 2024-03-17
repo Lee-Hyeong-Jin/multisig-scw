@@ -4,9 +4,9 @@ out = "out"
 libs = ["lib"]
 
 [rpc_endpoints]
-sepolia = "https://bitter-orbital-moon.ethereum-sepolia.quiknode.pro/9f309bac50790fb0d5c092a40730960425ea39df/"
+sepolia = "${SEPOLIA_RPC_URL}"
 
 [etherscan]
-sepolia = { key = "2MS5J2P8EGZD2I8PVTYS1R5QJMVA19IKVH" }
+sepolia = { key = "${ETHERSCAN_API_KEY}" }
 
 # See more config options https://github.com/foundry-rs/foundry/blob/master/crates/config/README.md#all-options
