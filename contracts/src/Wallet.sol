@@ -55,13 +55,13 @@ contract Wallet is
   }
 
   function initialize(address[] memory initialOwners) public initializer {
-    _initialize(initialOwner);
+    _initialize(initialOwners);
   }
 
-  function _initialize(address[] memory initailOwners) internal {
+  function _initialize(address[] memory initialOwners) internal {
     require(initialOwners.length > 0, "no owners");
-    owners = initailOwners;
-    emit WalletInitailized(_entryPoint, initailOwners);
+    owners = initialOwners;
+    emit WalletInitialized(_entryPoint, initialOwners);
   }
   
   function _call(address target, uint256 value, bytes memory data) internal {
@@ -86,7 +86,7 @@ contract Wallet is
     uint256[] calldata values,
     bytes[] calldata funcs
   ) external _requireFromEntryPointOrFactory {
-    require(dests.length == func.length, "wrong dests lengths");
+    require(dests.length == funcs.length, "wrong dests lengths");
     require(values.length == funcs.length, "wrong values lengths");
     for(uint256 i = 0; i<dests.length; i++) {
       _call(dests[i], values[i], funcs[i]);
